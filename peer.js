@@ -4,7 +4,7 @@ function listen() {
     peer.on('connection', function (connection) {
         connection.on('data', function (data) {
             // Will print 'hi!'
-            document.write(data + "<br>");
+            document.getElementById("content").innerHTML += data + "<br>";
         });
     });
 }
