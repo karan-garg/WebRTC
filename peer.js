@@ -7,7 +7,7 @@ function listenForData(dataConnection){
         document.getElementById("content").innerHTML += data + "<br>";
     });
 }
-function listenforConnection() {
+function listenForConnection() {
     peer.on('connection', function (receivedConnection) {
         connection = receivedConnection;
         listenForData(connection);
