@@ -1,7 +1,8 @@
 var peer;
 var connection;
 function listen() {
-    peer.on('connection', function (connection) {
+    peer.on('connection', function (received_connection) {
+        connection = received_connection;
         connection.on('data', function (data) {
             // Will print 'hi!'
             document.getElementById("content").innerHTML += data + "<br>";
