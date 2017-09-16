@@ -28,6 +28,7 @@ function connect() {
     console.log("trying to connect");
     var targetPeerID = document.getElementById("targetPeerID").value;
     connection = peer.connect(targetPeerID);
+    peer.on('error', function (err) { console.log(err)});
     connection.on('open', function () {
         connection.send('Connection Established!');
         console.log("connection opened; message sent!")
