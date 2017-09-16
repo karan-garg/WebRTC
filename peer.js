@@ -1,10 +1,10 @@
 var peer;
-
+var connection;
 function listen() {
     peer.on('connection', function (connection) {
         connection.on('data', function (data) {
             // Will print 'hi!'
-            console.log(data);
+            document.write(data + "<br>");
         });
     });
 }
@@ -15,7 +15,7 @@ function registerPeer() {
         key: 'y22brty3oaiz4cxr',
         config: {
             'iceServers': [
-                {url: 'stun:numb.viagenie.ca' },
+                {url: 'stun:numb.viagenie.ca'},
                 {url: 'turn:numb.viagenie.ca', username: 'kgarg@uwaterloo.ca', credential: 'bigbang123'}
             ]
         }
@@ -26,12 +26,23 @@ function registerPeer() {
 function connect() {
     console.log("trying to connect");
     var targetPeerID = document.getElementById("targetPeerID").value;
-    var connection = peer.connect(targetPeerID);
+    connection = peer.connect(targetPeerID);
     connection.on('open', function () {
-        connection.send('hi!');
+        connection.send('Connection Established!');
         console.log("connection opened; message sent!")
     });
 }
 
+function sendMsg() {
+    var msg = document.getElementById("msg").value || "blank msg";
+    if (connection.open) {
+        connection.send(msg);
+    }
+    else {
+        console.log("Connection is closed, cannot send msg.");
+    }
+}
+
 document.getElementById("connectBtn").addEventListener("click", connect);
 document.getElementById("registerBtn").addEventListener("click", registerPeer);
+document.getElementById("sendBtn").addEventListener("click", sendMsg);
