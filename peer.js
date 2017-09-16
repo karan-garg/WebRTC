@@ -1,12 +1,16 @@
 var peer;
 var connection;
-function listen() {
-    peer.on('connection', function (received_connection) {
-        connection = received_connection;
-        connection.on('data', function (data) {
-            // Will print 'hi!'
-            document.getElementById("content").innerHTML += data + "<br>";
-        });
+
+function listenForData(dataConnection){
+    dataConnection.on('data', function (data) {
+        // Will print 'hi!'
+        document.getElementById("content").innerHTML += data + "<br>";
+    });
+}
+function listenforConnection() {
+    peer.on('connection', function (receivedConnection) {
+        connection = receivedConnection;
+        listenForData(connection);
     });
 }
 
@@ -21,7 +25,7 @@ function registerPeer() {
             ]
         }
     });
-    listen();
+    listenForConnection();
 }
 
 function connect() {
@@ -30,6 +34,7 @@ function connect() {
     connection = peer.connect(targetPeerID);
     peer.on('error', function (err) { console.log(err)});
     connection.on('open', function () {
+        listenForData(connection);
         connection.send('Connection Established!');
         console.log("connection opened; message sent!")
     });
