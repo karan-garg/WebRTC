@@ -1,5 +1,5 @@
 function qr() {
-    var uuid = uuid();
+    var uuid = genUuid();
     var qrcode = new QRCode(document.getElementById("qrcode"), {
         text: uuid,
         width: 250,
