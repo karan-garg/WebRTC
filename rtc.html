@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/peerjs/0.3.14/peer.js"></script>
+    <meta charset="UTF-8">
+    <title>WebRTC</title>
+</head>
+<body>
+
+<form id="frm">
+    My ID: <input type="text" id="myID"><br>
+    Target Peer ID: <input type="text" id="targetPeerID"><br>
+    Message: <input type="text" id="msg"><br>
+    <input id="connectBtn" type="button" value="Initiate Connection">
+    <input id="registerBtn" type="button" value="Register Peer">
+    <input id="sendBtn" type="button" value="Send Message">
+    <p id = "content"></p>
+</form>
+
+<script src="peer.js"></script>
+</body>
+</html>

@@ -1,22 +1,25 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/peerjs/0.3.14/peer.js"></script>
-    <meta charset="UTF-8">
-    <title>WebRTC</title>
+    <title>Beam</title>
+    <script type="text/javascript" src="rsc/instascan.min.js"></script>
 </head>
 <body>
-
-<form id="frm">
-    My ID: <input type="text" id="myID"><br>
-    Target Peer ID: <input type="text" id="targetPeerID"><br>
-    Message: <input type="text" id="msg"><br>
-    <input id="connectBtn" type="button" value="Initiate Connection">
-    <input id="registerBtn" type="button" value="Register Peer">
-    <input id="sendBtn" type="button" value="Send Message">
-    <p id = "content"></p>
-</form>
-
-<script src="peer.js"></script>
+<video id="preview"></video>
+<script type="text/javascript">
+    var scanner = new Instascan.Scanner({ video: document.getElementById('preview') });
+    scanner.addListener('scan', function (content) {
+        console.log(content);
+    });
+    Instascan.Camera.getCameras().then(function (cameras) {
+        if (cameras.length > 0) {
+            scanner.start(cameras[0]);
+        } else {
+            console.error('No cameras found.');
+        }
+    }).catch(function (e) {
+        console.error(e);
+    });
+</script>
 </body>
 </html>
