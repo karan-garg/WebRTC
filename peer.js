@@ -1,23 +1,8 @@
-var peer;
-var connection;
+var auth_key = 'y22brty3oaiz4cxr';
 
-function listenForData(dataConnection){
-    dataConnection.on('data', function (data) {
-        // Will print 'hi!'
-        document.getElementById("content").innerHTML += data + "<br>";
-    });
-}
-function listenForConnection() {
-    peer.on('connection', function (receivedConnection) {
-        connection = receivedConnection;
-        listenForData(connection);
-    });
-}
-
-function registerPeer() {
-    var myID = document.getElementById("myID").value || "hostPeer";
-    peer = new Peer(myID, {
-        key: 'y22brty3oaiz4cxr',
+function registerPeer(id) {
+    var peer = new Peer(id, {
+        key: auth_key,
         config: {
             'iceServers': [
                 {url: 'stun:numb.viagenie.ca'},
@@ -25,31 +10,9 @@ function registerPeer() {
             ]
         }
     });
-    listenForConnection();
+    return peer;
 }
 
-function connect() {
-    console.log("trying to connect");
-    var targetPeerID = document.getElementById("targetPeerID").value;
-    connection = peer.connect(targetPeerID);
-    peer.on('error', function (err) { console.log(err)});
-    connection.on('open', function () {
-        listenForData(connection);
-        connection.send('Connection Established!');
-        console.log("connection opened; message sent!")
-    });
+function attachDataListener(dataConnection, dataHandler){   // dataHandler accepts one argument- the data received
+    dataConnection.on('data', dataHandler);
 }
-
-function sendMsg() {
-    var msg = document.getElementById("msg").value || "blank msg";
-    if (connection.open) {
-        connection.send(msg);
-    }
-    else {
-        console.log("Connection is closed, cannot send msg.");
-    }
-}
-
-document.getElementById("connectBtn").addEventListener("click", connect);
-document.getElementById("registerBtn").addEventListener("click", registerPeer);
-document.getElementById("sendBtn").addEventListener("click", sendMsg);

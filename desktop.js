@@ -8,4 +8,16 @@ function initDesktop(qrElmt) {
         colorLight: "#ffffff",
         correctLevel: QRCode.CorrectLevel.H
     });
+
+    function openURL(url) {
+        console.log("connection established");
+    }
+
+    var desktopHost = registerPeer(uuid);
+    var connection;
+    desktopHost.on('connection', function (receivedConnection) {
+        connection = receivedConnection;
+        attachDataListener(receivedConnection, openURL);
+    });
+
 }
