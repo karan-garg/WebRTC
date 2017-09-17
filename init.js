@@ -1,14 +1,16 @@
 var isMobile = isMobile();
 
 window.onload = function() {
+    var qrElmt = document.getElementById("qrcode");
+    var videoElmt = document.getElementById("scanVideo");
     if (isMobile) {
-        document.getElementById("qrcode").style.visibility = "hidden";
-        document.getElementById("scanVideo").style.visibility = "visible";
-        scan();
+        qrElmt.style.visibility = "hidden";
+        videoElmt.style.visibility = "visible";
+        scan(videoElmt);
     }
     else {
-        document.getElementById("scanVideo").style.visibility = "hidden";
-        document.getElementById("qrcode").style.visibility = "visible";
-        qr();
+        videoElmt.style.visibility = "hidden";
+        qrElmt.style.visibility = "visible";
+        qr(qrElmt);
     }
 }
