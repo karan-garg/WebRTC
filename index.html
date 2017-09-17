@@ -1,25 +1,15 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
     <title>Beam</title>
-    <script type="text/javascript" src="rsc/instascan.min.js"></script>
+    <script src="rsc/qrcode.min.js"></script>
+    <script src="rsc/uuid.js"></script>
 </head>
 <body>
-<video id="preview" style="display:block; margin: 0 auto;"></video>
-<script type="text/javascript">
-    var scanner = new Instascan.Scanner({ video: document.getElementById('preview') });
-    scanner.addListener('scan', function (content) {
-        console.log(content);
-    });
-    Instascan.Camera.getCameras().then(function (cameras) {
-        if (cameras.length > 0) {
-            scanner.start(cameras[cameras.length - 1]);
-        } else {
-            console.error('No cameras found.');
-        }
-    }).catch(function (e) {
-        console.error(e);
-    });
-</script>
+
+<div id="qrcode"></div>
+<script src = "qr.js"></script>
+
 </body>
 </html>
