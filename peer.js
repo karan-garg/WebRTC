@@ -10,7 +10,7 @@ function registerPeer(id) {
             ]
         },
         host: 'localhost',
-        port: 9000,
+        port: 443,
         path: '/peerjs',
         debug: 3
     });
