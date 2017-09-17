@@ -6,11 +6,11 @@ window.onload = function() {
     if (isMobile) {
         qrElmt.style.visibility = "hidden";
         videoElmt.style.visibility = "visible";
-        scan(videoElmt);
+        initMobile(videoElmt);
     }
     else {
         videoElmt.style.visibility = "hidden";
         qrElmt.style.visibility = "visible";
-        qr(qrElmt);
+        initDesktop(qrElmt);
     }
 }

@@ -1,4 +1,4 @@
-function scan(videoElmt) {
+function initMobile(videoElmt) {
     var scanner = new Instascan.Scanner({video: videoElmt, mirror: false});
 
     Instascan.Camera.getCameras().then(function (cameras) {

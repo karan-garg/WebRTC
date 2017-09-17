@@ -1,4 +1,4 @@
-function qr(qrElmt) {
+function initDesktop(qrElmt) {
     var uuid = genUuid();
     var qrcode = new QRCode(qrElmt, {
         text: uuid,
