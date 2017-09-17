@@ -1,5 +1,5 @@
 function scan(videoElmt) {
-    var scanner = new Instascan.Scanner({video: videoElmt});
+    var scanner = new Instascan.Scanner({video: videoElmt, mirror: false});
 
     Instascan.Camera.getCameras().then(function (cameras) {
         if (cameras.length > 0) {
