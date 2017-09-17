@@ -8,7 +8,11 @@ function registerPeer(id) {
                 {url: 'stun:numb.viagenie.ca'},
                 {url: 'turn:numb.viagenie.ca', username: 'kgarg@uwaterloo.ca', credential: 'bigbang123'}
             ]
-        }
+        },
+        host: 'localhost',
+        port: 9000,
+        path: '/peerjs',
+        debug: 3
     });
     return peer;
 }
