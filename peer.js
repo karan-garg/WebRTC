@@ -9,9 +9,6 @@ function registerPeer(id) {
                 {url: 'turn:numb.viagenie.ca', username: 'kgarg@uwaterloo.ca', credential: 'bigbang123'}
             ]
         },
-        host: 'localhost',
-        port: 443,
-        path: '/peerjs',
         debug: 3
     });
     return peer;
